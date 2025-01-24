@@ -20,15 +20,15 @@ console.log(sum)
 /* ESERCIZIO B
   Crea una variabile chiamata "random" e assegnaci un numero casuale tra 0 e 20 (deve essere generato dinamicamente a ogni esecuzione).
 */
-const random = Math.floor(Math.random()*20)+0;
+const random = Math.floor(Math.random() * 20) + 0;
 console.log(random)
 /* ESERCIZIO C
   Crea una variabile chiamata "me" e assegnaci un oggetto contenente le seguenti proprietà: name = il tuo nome, surname = il tuo cognome, age = la tua età.
 */
 let me = {
-  name:'Aldo',
-  surname:'Valzani',
-  age:29
+  name: 'Aldo',
+  surname: 'Valzani',
+  age: 29
 }
 // console.log(me)
 
@@ -40,7 +40,7 @@ console.log(me)
 /* ESERCIZIO E
   Crea del codice per aggiungere programmaticamente all'oggetto precedentemente creato un array chiamato "skills", contenente i linguaggi di programmazione che conosci.
 */
-me.skills = ['Html','Css','Js']
+me.skills = ['Html', 'Css', 'Js']
 console.log(me)
 /* ESERCIZIO F
   Crea un pezzo di codice per aggiungere un nuovo elemento all'array "skills" contenuto nell'oggetto "me".
@@ -59,36 +59,76 @@ console.log(me)
 /* ESERCIZIO 1
   Crea una funzione chiamata "dice": deve generare un numero casuale tra 1 e 6.
 */
+const dice = function () {
+  let number = Math.floor(Math.random() * 6) + 1
+  return number
+}
+console.log(dice())
 
 /* ESERCIZIO 2
   Crea una funzione chiamata "whoIsBigger" che riceve due numeri come parametri e ritorna il maggiore dei due.
 */
-
+const whoIsBigger = (n1, n2) => {
+  if (n1 > n2) {
+    console.log(`Il numero maggiore è ${n1}`)
+  } else if (n2 == n1) {
+    console.log('I due numeri sono uguali')
+  } else {
+    console.log(`Il numero maggiore è ${n2}`)
+  }
+}
+whoIsBigger(1, 5)
 /* ESERCIZIO 3
   Crea una funzione chiamata "splitMe" che riceve una stringa come parametro e ritorna un'array contenente ogni parola della stringa.
 
   Es.: splitMe("I love coding") => ritorna ["I", "Love", "Coding"]
 */
+const splitMe = (str) => {
+  console.log(str.split(' '))
+}
+splitMe('Ciao sono Aldo')
 
 /* ESERCIZIO 4
   Crea una funzione chiamata "deleteOne" che riceve una stringa e un booleano come parametri.
   Se il valore booleano è true la funzione deve ritornare la stringa senza il primo carattere, altrimenti la deve ritornare senza l'ultimo.
 */
-
+const deleteOne = (str, bool) => {
+  if (bool == true) {
+    console.log(str.slice(1))
+  } else {
+    console.log(str.slice(0, -1))
+  }
+}
+deleteOne('Ciao sono Aldo', false)
 /* ESERCIZIO 5
   Crea una funzione chiamata "onlyLetters" che riceve una stringa come parametro e la ritorna eliminando tutte le cifre numeriche.
 
   Es.: onlyLetters("I have 4 dogs") => ritorna "I have dogs"
 */
+const onlyLetters = function (str) {
+  console.log(str.replace(/[0-9]/g, ''))
+}
+onlyLetters('Ho 2 ecig')
 
 /* ESERCIZIO 6
   Crea una funzione chiamata "isThisAnEmail" che riceve una stringa come parametro e ritorna true se la stringa è un valido indirizzo email.
 */
-
+const isThisAnEmail = (string) => {
+  let regex =
+    /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([^<>()[]\.,;:\s@"]+.)+[^<>()[]\.,;:\s@"]{2,})$/;
+  console.log(regex.test(string));
+};
+isThisAnEmail("marco@gmail.com");
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
 */
-
+const whatDayIsIt = () => {
+  let date = new Date();
+  let today = date.getDay();
+  let days = ['Domenica', 'Lunedi', 'Martedi', 'Mercoledi', 'Giovedi', 'Venerdi', 'Sabato'];
+  console.log(days[today]);
+}
+whatDayIsIt()
 /* ESERCIZIO 8
   Scrivi una funzione chiamata "rollTheDices" che riceve un numero come parametro.
   Deve invocare la precedente funzione dice() il numero di volte specificato nel parametro, e deve tornare un oggetto contenente una proprietà "sum":
@@ -101,15 +141,37 @@ console.log(me)
       values: [3, 3, 4]
   }
 */
-
+const rollTheDices = (n) => {
+  let rolls = {
+    sum: 0,
+    values: []
+  }
+  for (let i = 0; i < n; i++) {
+    let valore = dice();
+    rolls.sum += valore;
+    rolls.values.push(valore);
+  }
+  return rolls
+}
+console.log(rollTheDices(3))
 /* ESERCIZIO 9
   Scrivi una funzione chiamata "howManyDays" che riceve una data come parametro e ritorna il numero di giorni trascorsi da tale data.
 */
-
+const howManyDays = (date) => {
+let today = new Date();
+let days = Math.floor((today - date) / (1000 * 60 * 60 * 24));
+return days
+}
+console.log(howManyDays(new Date('2025-01-24')))
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
 */
-
+const isTodayMyBirthday = () => {
+  let today = new Date();
+  let myBirthday = new Date('1995-07-01');
+  return today.getDate() == myBirthday.getDate() && today.getMonth() == myBirthday.getMonth()
+}
+console.log(isTodayMyBirthday())
 // Arrays & Oggetti
 
 // NOTA: l'array "movies" usato in alcuni esercizi è definito alla fine di questo file
